@@ -2,6 +2,7 @@ use std::fmt::{Display, Formatter, Result as FmtResult};
 
 try_from_enum_to_integer! {
     #[repr(u16)]
+    #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
     pub enum ExtendedDNSErrorKind {
         Other = 0,
         // ...
@@ -11,12 +12,12 @@ try_from_enum_to_integer! {
 
 #[derive(Debug, PartialEq, Clone, Eq, Hash)]
 pub struct ExtendedDNSError {
-    kind: ExtendedDNSErrorKind,
-    message: String,
+    pub kind: ExtendedDNSErrorKind,
+    pub message: String,
 }
 
-impl Display for Padding {
+impl Display for ExtendedDNSError {
     fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
-        write!(f, "Padding {}", self.0)
+        write!(f, "Extended DNS Error {:?}: {}", self.kind, self.message)
     }
 }
