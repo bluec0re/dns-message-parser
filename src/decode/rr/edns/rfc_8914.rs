@@ -1,6 +1,6 @@
 use crate::decode::Decoder;
 use crate::rr::edns::{ExtendedDNSError, ExtendedDNSErrorKind};
-use crate::DecodeResult;
+use crate::{DecodeError, DecodeResult};
 use std::str::from_utf8;
 
 impl<'a, 'b: 'a> Decoder<'a, 'b> {

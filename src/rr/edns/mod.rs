@@ -12,4 +12,4 @@ pub use rfc_7873::{
     Cookie, CookieError, CLIENT_COOKIE_LENGTH, MAXIMUM_SERVER_COOKIE_LENGTH,
     MINIMUM_SERVER_COOKIE_LENGTH,
 };
-pub use rfc_8914::ExtendedDNSError;
+pub use rfc_8914::{ExtendedDNSError, ExtendedDNSErrorKind};
