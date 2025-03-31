@@ -6,13 +6,12 @@ use std::convert::TryFrom;
 
 impl<'a, 'b: 'a> Decoder<'a, 'b> {
     pub(super) fn rr_edns_extended_dns_error(&mut self) -> DecodeResult<ExtendedDNSError> {
-        let vec = self.vec()?;
-        let vec_len = vec.len();
         let info_code = self.u16()?;
+        let vec = self.vec()?;
         match ExtendedDNSErrorKind::try_from(info_code) {
             Ok(kind) => Ok(ExtendedDNSError {
                 kind,
-                message: String::from(from_utf8(&vec[2..])?),
+                message: String::from(from_utf8(&vec)?),
             }),
             Err(code) => Err(DecodeError::ExtendedDNSError(code)),
         }
