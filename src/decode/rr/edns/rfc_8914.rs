@@ -2,6 +2,7 @@ use crate::decode::Decoder;
 use crate::rr::edns::{ExtendedDNSError, ExtendedDNSErrorKind};
 use crate::{DecodeError, DecodeResult};
 use std::str::from_utf8;
+use std::convert::TryFrom;
 
 impl<'a, 'b: 'a> Decoder<'a, 'b> {
     pub(super) fn rr_edns_extended_dns_error(&mut self) -> DecodeResult<ExtendedDNSError> {

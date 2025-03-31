@@ -24,7 +24,7 @@ impl Encoder {
             EDNSOption::ECS(ecs) => self.rr_edns_ecs(ecs)?,
             EDNSOption::Cookie(cookie) => self.rr_edns_cookie(cookie)?,
             EDNSOption::Padding(padding) => self.rr_edns_padding(padding),
-            EDNSOption::ExtendedDNSError(ext_dns_error) => self.rr_edns_extended_dns_error(ext_dns_error),
+            EDNSOption::ExtendedDNSError(ext_dns_error) => self.rr_edns_extended_dns_error(ext_dns_error)?,
         }
         Ok(())
     }
