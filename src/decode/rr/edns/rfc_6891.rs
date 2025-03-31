@@ -30,6 +30,7 @@ impl<'a, 'b: 'a> Decoder<'b, 'b> {
             EDNSOptionCode::ECS => EDNSOption::ECS(ends_option_data.rr_edns_ecs()?),
             EDNSOptionCode::Cookie => EDNSOption::Cookie(ends_option_data.rr_edns_cookie()?),
             EDNSOptionCode::Padding => EDNSOption::Padding(ends_option_data.rr_edns_padding()?),
+            EDNSOptionCode::ExtendedDNSError => EDNSOption::ExtendedDNSError(ends_option_data.rr_edns_extended_dns_error()?),
         };
         ends_option_data.finished()?;
         Ok(edns_option)

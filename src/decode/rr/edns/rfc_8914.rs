@@ -1,0 +1,19 @@
+use crate::decode::Decoder;
+use crate::rr::edns::{ExtendedDNSError, ExtendedDNSErrorKind};
+use crate::DecodeResult;
+use std::str::from_utf8;
+
+impl<'a, 'b: 'a> Decoder<'a, 'b> {
+    pub(super) fn rr_edns_extended_dns_error(&mut self) -> DecodeResult<ExtendedDNSError> {
+        let vec = self.vec()?;
+        let vec_len = vec.len();
+        let info_code = self.u16()?;
+        match ExtendedDNSErrorKind::try_from(info_code) {
+            Ok(kind) => Ok(ExtendedDNSError {
+                kind,
+                message: String::from(from_utf8(&vec[2..])?),
+            }),
+            Err(code) => Err(DecodeError::ExtendedDNSError(code)),
+        }
+    }
+}

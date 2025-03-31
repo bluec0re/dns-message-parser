@@ -2,6 +2,7 @@ pub(crate) mod rfc_6891;
 mod rfc_7830;
 mod rfc_7871;
 mod rfc_7873;
+mod rfc_8914;
 
 //pub use rfc_6891::OPT;
 pub use rfc_6891::{EDNSOption, EDNSOptionCode, EDNS_DNSSEC_MASK};
@@ -11,3 +12,4 @@ pub use rfc_7873::{
     Cookie, CookieError, CLIENT_COOKIE_LENGTH, MAXIMUM_SERVER_COOKIE_LENGTH,
     MINIMUM_SERVER_COOKIE_LENGTH,
 };
+pub use rfc_8914::ExtendedDNSError;

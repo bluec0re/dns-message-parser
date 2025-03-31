@@ -101,4 +101,6 @@ pub enum DecodeError {
     TagError(#[from] TagError),
     #[error("ECH length mismatch. Expected {0} got {1}")]
     ECHLengthMismatch(usize, usize),
+    #[error("Unknown Extended DNS Error code: {0}")]
+    ExtendedDNSError(u16),
 }

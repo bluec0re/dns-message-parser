@@ -1,4 +1,4 @@
-use super::{Cookie, Padding, ECS};
+use super::{Cookie, Padding, ECS, ExtendedDNSError};
 use std::fmt::{Display, Formatter, Result as FmtResult};
 
 pub const EDNS_DNSSEC_MASK: u8 = 0x80;
@@ -10,6 +10,7 @@ try_from_enum_to_integer! {
         ECS = 0x00008,
         Cookie = 0x000a,
         Padding = 0x000c,
+        ExtendedDNSError = 0x000f,
     }
 }
 
@@ -18,6 +19,7 @@ pub enum EDNSOption {
     ECS(ECS),
     Cookie(Cookie),
     Padding(Padding),
+    ExtendedDNSError(ExtendedDNSError),
 }
 
 impl Display for EDNSOption {
@@ -26,6 +28,7 @@ impl Display for EDNSOption {
             EDNSOption::ECS(ecs) => ecs.fmt(f),
             EDNSOption::Cookie(cookie) => cookie.fmt(f),
             EDNSOption::Padding(padding) => padding.fmt(f),
+            EDNSOption::ExtendedDNSError(ext_error) => ext_error.fmt(f),
         }
     }
 }
